@@ -37,3 +37,6 @@ venv/
 
 # MS Office temporary documents
 ~$*
+
+# Custom
+app/__pycache__

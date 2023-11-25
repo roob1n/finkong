@@ -1,19 +1,7 @@
-# In this file list all Python packages that your project needs.
-# When someone else wants to get started with your project sources, they can
-# simple run 'pip install -r requirements.txt' to automatically install them on
-# their machine
-#
-# Every dependency must be on its own line. Note that the '#'-character is used
-# as comment character.
-#
-
-# For programming a game with pygame, you want to uncomment the following line:
-#pygame==2.5.2
-
-# If you want to try to package your project for easier distribution, uncomment
-# the following line:
-#pyinstaller==6.1.0
-
-black==22.10.0
-flake8==4.0.1
-pep8-naming==0.13.2
+blinker==1.7.0
+click==8.1.7
+Flask==3.0.0
+itsdangerous==2.1.2
+Jinja2==3.1.2
+MarkupSafe==2.1.3
+Werkzeug==3.0.1
