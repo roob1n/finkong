@@ -12,26 +12,25 @@ CREATE TABLE user (
 CREATE TABLE account (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   title VARCHAR(255) NOT NULL,
+  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   user_id INT,
-  FOREIGN KEY (user_id) REFERENCES user(id),
-  created TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-);
-
-CREATE TABLE position (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    text TEXT NOT NULL,
-    amountRappen INT NOT NULL,
-    account_id INT,
-    FOREIGN KEY (account_id) REFERENCES account(id),
-    category_id INT,
-    FOREIGN KEY (category_id) REFERENCES category(id),
-    created TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    
+  FOREIGN KEY (user_id) REFERENCES user(id)
 );
 
 CREATE TABLE category (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     title VARCHAR(255) UNIQUE NOT NULL,
     description VARCHAR(255),
-    created TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE position (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    text TEXT NOT NULL,
+    amount_rappen INT NOT NULL,
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    account_id INT,
+    category_id INT,
+    FOREIGN KEY (account_id) REFERENCES account(id),
+    FOREIGN KEY (category_id) REFERENCES category(id)
 );

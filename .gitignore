@@ -38,5 +38,6 @@ venv/
 # MS Office temporary documents
 ~$*
 
-# Custom
+# Project custom
 app/__pycache__
+instance
