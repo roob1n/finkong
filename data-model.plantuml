@@ -1,0 +1,30 @@
+@startuml
+
+class User {
+  - id: int
+  - username: string
+  - password: string
+}
+
+class Account {
+  - id: int
+  - title: string
+}
+
+class Position {
+  - id: int
+  - text: string
+  - amountRappen: int
+}
+
+class Category {
+  - id: int
+  - title: string
+  - description: string
+}
+
+User "1" o-- "0..n" Account : has
+Account "1" *-- "0..n" Position : has
+Position "many" -- "0..1" Category : belongs to
+
+@enduml
