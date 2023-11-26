@@ -24,12 +24,13 @@ pip install -r requirements.txt
 ```
 
 ### Database
-Next create the database. For simplicity, this project uses SQLite, but feel free to exchange it with any other DB system.
+Next create the database. For simplicity, this project uses SQLite, but feel free to exchange it with any other DB system. Then seed some test data into the database. 
 
 ```
 flask --app app db-init
-flask --app app db-seed
+flask --app app seed-test
 ```
+This creates a user `admin` with password `admin`, as well as some accounts and positions, so you can explore the application. Please ensure to delete the test data before deploying to production. 
 
 ### Run the application
 Once the database has been set up, you can run the application using:

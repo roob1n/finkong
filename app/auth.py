@@ -15,6 +15,7 @@ def register():
         username = request.form['username']
         password = request.form['password']
         db = get_db()
+        cursor = db.cursor()
         error = None
 
         if not username:
@@ -24,10 +25,19 @@ def register():
         
         if error is None:
             try:
-                db.execute(
+                cursor.execute(
                     'INSERT INTO user (username, password) VALUES (?, ?)',
                     (username, generate_password_hash(password))
                 )
+            
+                user_id = cursor.lastrowid
+
+                # create one account for the new user
+                cursor.execute(
+                    'INSERT INTO account (title, user_id) VALUES (?, ?)',
+                    ("Kong Konto #1", user_id)
+                )
+
                 db.commit()
             except db.IntegrityError:
                 error = f'User {username} is already registered.'
