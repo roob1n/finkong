@@ -10,6 +10,13 @@ def init_db():
     with current_app.open_resource('schema.sql') as f:
         db.executescript(f.read().decode('utf8'))
 
+# Seed the db with the base values
+def seed_db():
+    db = get_db()
+
+    with current_app.open_resource('seed.sql') as f:
+        db.executescript(f.read().decode('utf8'))
+
 def get_db():
     if 'db' not in g:
         g.db = sqlite3.connect(
@@ -32,7 +39,13 @@ def init_db_command():
     init_db()
     click.echo('Initialized the database.')
 
+@click.command('seed-db')
+def seed_db_command():
+    seed_db()
+    click.echo('Seeded the database.')
+
 # add the close_db function and the init_db_command to the app context
 def init_app(app):
     app.teardown_appcontext(close_db)
     app.cli.add_command(init_db_command)
+    app.cli.add_command(seed_db_command)

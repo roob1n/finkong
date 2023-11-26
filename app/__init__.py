@@ -10,9 +10,6 @@ def create_app(test_config=None):
         DATABASE=os.path.join(app.instance_path, 'finkong.sqlite'),
     )
 
-    from . import db
-    db.init_app(app)
-
     if test_config is None:
         # load the instance config, if it exists, when not testing
         app.config.from_pyfile('config.py', silent=True)
@@ -25,6 +22,14 @@ def create_app(test_config=None):
         os.makedirs(app.instance_path)
     except OSError:
         pass
+
+    # Set up the database handler
+    from . import db
+    db.init_app(app)
+
+    # Set up the auth blueprint
+    from . import auth
+    app.register_blueprint(auth.bp)
 
     # a simple page that says hello
     @app.route('/hello')
