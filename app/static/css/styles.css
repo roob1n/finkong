@@ -1,0 +1,13 @@
+/* Colors */
+:root {
+    --black: #0b060eff;
+    --silver: #a7a2a2ff;
+    --eggshell: #ebebd8ff;
+    --cosmic-latte: #fbf5e3ff;
+    --caribbean-current: #30605aff;
+    --tea-green: #c5e2c4ff;
+}
+
+body {
+    background-color: var(--tea-green);
+}
