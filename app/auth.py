@@ -34,14 +34,13 @@ def register ():
             else:
                 return redirect(url_for('auth.login'))
             
-        # if there is an error, flash it back
         flash(error)
     return render_template('auth/register.html')
 
 #================
 #   LOGIN
 #================
-@bp.route('login', methods=('GET', 'POST'))
+@bp.route('/login', methods=('GET', 'POST'))
 def login():
     if request.method == 'POST':
         username = request.form['username']
@@ -54,7 +53,7 @@ def login():
 
         if user is None:
             error = 'Incorrect username'
-        elif not check_password_hash(user['password'], password)
+        elif not check_password_hash(user['password'], password):
             error = 'Incorrect password'
 
         if error is None:
@@ -63,5 +62,36 @@ def login():
             return redirect(url_for('index'))
             
         flash(error)
-        
+
     return render_template('auth/login.html')
+
+# Helpper routine that helps to fetch the user, if logged in
+@bp.before_app_request
+def load_logged_in_user():
+    user_id = session.get('user_id')
+
+    if user_id is None:
+        g.user = None
+    else:
+        g.user = get_db().execute(
+            'SELECT * FROM user WHERE id = ?', (user_id,)
+        ).fetchone()
+
+# Create a decorator for views that require to be logged in
+def login_required(view):
+    @functools.wraps(view)
+    def wrapped_view(**kwargs):
+        if g.user is None:
+            return redirect(url_for('auth.login'))
+
+        return view(**kwargs)
+
+    return wrapped_view
+
+#================
+#   LOGOUT
+#================
+@bp.route('/logout')
+def logout():
+    session.clear()
+    return redirect(url_for('index'))

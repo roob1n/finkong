@@ -1,6 +1,6 @@
 import os
 
-from flask import Flask
+from flask import (Flask, render_template)
 
 def create_app(test_config=None):
     # create and configure the app
@@ -32,8 +32,8 @@ def create_app(test_config=None):
     app.register_blueprint(auth.bp)
 
     # a simple page that says hello
-    @app.route('/hello')
-    def hello():
-        return 'Hello, World!'
+    @app.route('/')
+    def index():
+        return render_template('index.html')
 
     return app
