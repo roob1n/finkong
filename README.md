@@ -1,37 +1,45 @@
-!! Change this document for your own project by removing the placeholder text, adding your own text, adding helpful sections etc. etc. !!
+# Finkong
+_Manage your finances like a Kong!_
 
-# <Project Title>
+![Finkong Logo](./app/static/images/finkong-logo-small.png)
 
-In a few sentences describe what your project is trying to solve.
+## About the project
+Finkong is an finance, budget and expense management application that is based on the micro web framework [Flask](https://flask.palletsprojects.com/) and was built as a group project in the Software Engineering (SWEN) module.
 
-You can use [GitHub markdown
-notation](https://docs.github.com/en/github/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax)
-or [GitLab markdown notation](https://docs.gitlab.com/ee/user/markdown.html) in
-case you are using one of these platforms. This will give a nicely formatted
-documentation when looking at your project online.
+**Implemented features:**
+- User Registration
+- Login
 
-## Get started
+**Planned features:**
+- Account creation
+- Expense tracking
+- Budget creation
 
-Explain what the user has to type to get started with your solution. Which one
-is the main Python file? In the simplest case, this could look something like
-this:
+## Project setup & getting started
 
-``
-    python main.py
-``
+Create a virtual environment first and active it. Then install all dependencies, including Flask, from the `requirements.txt`.
 
-In other cases the user might first have to install some project dependencies
-first has to run something like this (a sample requirements.txt file is also
-included in the project template):
+```
+pip install -r requirements.txt
+```
 
-``
-    pip install -r requirements.txt
-``
+### Database
+Next create the database. For simplicity, this project uses SQLite, but feel free to exchange it with any other DB system.
 
-## Understanding the sources
+```
+flask --app app db-init
+flask --app app db-seed
+```
 
-Explain any high level concepts that you are using in your software. What were
-your ideas for creating the whole software? What might not be apparent from the
-sources alone? You can also add diagrams, photos of whiteboards or flipcharts
-or even crudly drawing napkin sketches of the core concepts of your software
-when they are readable and helpful for understanding.
+### Run the application
+Once the database has been set up, you can run the application using:
+```
+flask --app app run
+```
+
+This will start the local dev server and you can access the Finkong application in your browser under `http://127.0.0.1:5000/`.
+
+## Authors
+Finkong is developped by:
+- [martn39](https://github.com/martn39)
+- [roob1n](https://github.com/roob1n)
