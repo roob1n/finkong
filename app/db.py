@@ -10,11 +10,18 @@ def init_db():
     with current_app.open_resource('schema.sql') as f:
         db.executescript(f.read().decode('utf8'))
 
-# Seed the db with the base values
-def seed_db():
+# Seed the db with the initial values
+def seed_init_db():
     db = get_db()
 
-    with current_app.open_resource('seed.sql') as f:
+    with current_app.open_resource('seed-init.sql') as f:
+        db.executescript(f.read().decode('utf8'))
+
+# Seed the db with the test data
+def seed_test_db():
+    db = get_db()
+
+    with current_app.open_resource('seed-testdata.sql') as f:
         db.executescript(f.read().decode('utf8'))
 
 def get_db():
@@ -37,15 +44,16 @@ def close_db(e=None):
 def init_db_command():
     """Clear the existing data and create new tables."""
     init_db()
-    click.echo('Initialized the database.')
+    seed_init_db()
+    click.echo('Initialized the database and seeded with init values.')
 
-@click.command('seed-db')
-def seed_db_command():
-    seed_db()
-    click.echo('Seeded the database.')
+@click.command('seed-test')
+def seed_test_db_command():
+    seed_test_db()
+    click.echo('Seeded the database with test data.')
 
 # add the close_db function and the init_db_command to the app context
 def init_app(app):
     app.teardown_appcontext(close_db)
     app.cli.add_command(init_db_command)
-    app.cli.add_command(seed_db_command)
+    app.cli.add_command(seed_test_db_command)

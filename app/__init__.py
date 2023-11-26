@@ -23,6 +23,10 @@ def create_app(test_config=None):
     except OSError:
         pass
 
+    from app.filters import format_currency
+    # Register the filter with Flask
+    app.jinja_env.filters['format_currency'] = format_currency
+
     # Set up the database handler
     from . import db
     db.init_app(app)
@@ -30,6 +34,10 @@ def create_app(test_config=None):
     # Set up the auth blueprint
     from . import auth
     app.register_blueprint(auth.bp)
+
+      # Set up the auth blueprint
+    from . import account
+    app.register_blueprint(account.bp)
 
     # a simple page that says hello
     @app.route('/')

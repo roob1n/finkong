@@ -1,0 +1,28 @@
+{% extends 'app.html' %}
+
+{% block header %}
+<h1>{% block title %}Account{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+<table class="table table-stiped">
+    <thead>
+        <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Last Month</th>
+            <th scope="col">This Month</th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for account in accounts %}
+        <tr>
+            <th scope="row">{{ account['title'] }}</th>
+            <td>{{ account['total_last_month']|format_currency }}</td>
+            <td>{{ account['total_current_month']|format_currency }}</td>
+            <td><a class="btn btn-primary" href="{{ url_for('account.view') }}">Details</a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
