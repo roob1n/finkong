@@ -1,0 +1,26 @@
+{% extends 'app.html' %}
+
+{% block header %}
+<h1>{% block title %}{{ account['title'] }}{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+<table class="table table-stiped">
+    <thead>
+        <tr>
+            <th scope="col">Text</th>
+            <th scope="col">Category</th>
+            <th scope="col">Amount</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for position in positions %}
+        <tr>
+            <td>{{ position['text'] }}</td>
+            <td>{{ position['category'] }}</td>
+            <td>{{ position['amount']|format_currency }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
