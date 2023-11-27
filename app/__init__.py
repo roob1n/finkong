@@ -35,9 +35,13 @@ def create_app(test_config=None):
     from . import auth
     app.register_blueprint(auth.bp)
 
-      # Set up the auth blueprint
+      # Set up the account blueprint
     from . import account
     app.register_blueprint(account.bp)
+
+     # Set up the user_profile blueprint
+    from . import user_profile
+    app.register_blueprint(user_profile.bp)
 
     # a simple page that says hello
     @app.route('/')

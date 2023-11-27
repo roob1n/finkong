@@ -37,8 +37,11 @@ Once the database has been set up, you can run the application using:
 ```
 flask --app app run
 ```
-
-This will start the local dev server and you can access the Finkong application in your browser under `http://127.0.0.1:5000/`.
+To run the application in debug mode enter :
+```
+flask --app app run --debug --port 8000
+```
+This will start the local dev server and you can access the Finkong application in your browser under `http://127.0.0.1:8000/`.
 
 ## Authors 
 Finkong is developped by:
