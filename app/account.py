@@ -32,7 +32,7 @@ def single(id):
         abort(403, 'You have no access to this account.')
 
     positions = db.execute(
-        'SELECT p.id, p.text, p.created_at, p.amount_rappen AS amount, p.category_id, c.title AS category'
+        'SELECT p.id, p.text, p.created_at, p.amount_rappen AS amount, p.category_id, c.title AS category, c.color AS category_color'
         ' FROM position p'
         ' JOIN category c ON p.category_id = c.id'
         ' WHERE p.account_id = ?'
