@@ -1,7 +1,7 @@
 {% extends 'app.html' %}
 
 {% block header %}
-<h1>{% block title %}Profile{% endblock %}</h1>
+<h1>{% block title %}Edit Profile{% endblock %}</h1>
 {% endblock %}
 
 {% block content %}
@@ -18,9 +18,20 @@
                 <span>{{ user['zip'] + ' ' + user['city']}}</span>
             </p>
         </div>
+        <form action="{{ url_for('user_profile.edit')}}" method="POST">
+            <!-- Other form fields -->
+
+            <div class="mb-3">
+                <label for="street" class="form-label">Neue Strasse:</label>
+                <input type="text" class="form-control" id="street" name="street"
+                    placeholder="Bitte gib hier deine neue Adresse ein">
+            </div>
+
+            <!-- Other form fields -->
+
+            <button type="submit" class="btn btn-primary">Save Changes</button>
+        </form>
     </div>
 </div>
-
-<a class="btn btn-outline-secondary my-2" href=" {{ url_for('user_profile.edit') }}">Profil bearbeiten</a>
 
 {% endblock %}
