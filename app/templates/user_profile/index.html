@@ -1,0 +1,16 @@
+{% extends 'app.html' %}
+
+{% block header %}
+<h1>{% block title %}Profile{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+<div class="card">
+    <div class="card-body">
+        <div class="form-group">
+            <label for="userName">User Name:</label>
+            <p class="form-control-static">{{ user['username'] }}</p>
+        </div>
+    </div>
+</div>
+{% endblock %}

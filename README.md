@@ -27,7 +27,7 @@ pip install -r requirements.txt
 Next create the database. For simplicity, this project uses SQLite, but feel free to exchange it with any other DB system. Then seed some test data into the database. 
 
 ```
-flask --app app db-init
+flask --app app init-db
 flask --app app seed-test
 ```
 This creates a user `admin` with password `admin`, as well as some accounts and positions, so you can explore the application. Please ensure to delete the test data before deploying to production. 
@@ -37,10 +37,13 @@ Once the database has been set up, you can run the application using:
 ```
 flask --app app run
 ```
+To run the application in debug mode enter :
+```
+flask --app app run --debug --port 8000
+```
+This will start the local dev server and you can access the Finkong application in your browser under `http://127.0.0.1:8000/`.
 
-This will start the local dev server and you can access the Finkong application in your browser under `http://127.0.0.1:5000/`.
-
-## Authors
+## Authors 
 Finkong is developped by:
 - [martn39](https://github.com/martn39)
 - [roob1n](https://github.com/roob1n)

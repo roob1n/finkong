@@ -43,6 +43,10 @@ def create_app(test_config=None):
     from . import category
     app.register_blueprint(category.bp)
 
+     # Set up the user_profile blueprint
+    from . import user_profile
+    app.register_blueprint(user_profile.bp)
+
     # a simple page that says hello
     @app.route('/')
     def index():

@@ -76,7 +76,7 @@ def login():
 
     return render_template('auth/login.html')
 
-# Helpper routine that helps to fetch the user, if logged in
+# Helper routine that helps to fetch the user, if logged in
 @bp.before_app_request
 def load_logged_in_user():
     user_id = session.get('user_id')
