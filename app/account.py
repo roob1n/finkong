@@ -32,7 +32,7 @@ def single(id):
     account = db.execute('SELECT * FROM account WHERE id = ?', (id,)).fetchone()
 
     positions = db.execute(
-        'SELECT p.id, p.text, p.created_at, p.amount_rappen AS amount, p.category_id, c.title AS category, c.color AS category_color'
+        'SELECT p.id, p.text, p.created_at, ROUND(p.amount_rappen / 100.0, 2) AS amount, p.category_id, c.title AS category, c.color AS category_color'
         ' FROM position p'
         ' JOIN category c ON p.category_id = c.id'
         ' WHERE p.account_id = ?'
@@ -52,7 +52,7 @@ def add(id):
             abort(403, 'You have no access to this account.')
 
         text = request.form['posting_text']
-        amount = request.form['amount']
+        amount = request.form['amount'] * 100.0
         category_id = request.form['category']
         
         db.execute('INSERT INTO position (text, account_id, amount_rappen, category_id) VALUES (?, ?, ?, ?)',
@@ -67,7 +67,6 @@ def add(id):
     
     return render_template('account/add.html', categories = categories, account = account, )
     
-   
 def account_belongs_to_user(id):
     db = get_db()
     account = db.execute('SELECT * FROM account WHERE id = ?', (id,)).fetchone()
