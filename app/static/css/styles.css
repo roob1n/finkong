@@ -11,3 +11,8 @@
 body {
     background-color: var(--tea-green);
 }
+
+.btn-primary {
+    background-color: var(--caribbean-current);
+    border-color: var(--caribbean-current);
+}

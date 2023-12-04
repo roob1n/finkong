@@ -16,12 +16,17 @@ def edit():
         zip = request.form['zip']
         city = request.form['city']
         db = get_db()
-        
-        db.execute('UPDATE user SET street = ?, street_nr = ?, zip = ?, city = ? WHERE id = ?', (street, street_nr, zip, city, g.user['id']))
+        error = None
 
-        db.commit()
+        if len(street) == 0:
+            error = 'Strasse fehlt'
 
-        flash('User has been updated')
-        return redirect(url_for('user_profile.index')) 
+        if error is not None:
+            flash(error)
+        else:      
+            db.execute('UPDATE user SET street = ?, street_nr = ?, zip = ?, city = ? WHERE id = ?', (street, street_nr, zip, city, g.user['id']))
+            db.commit()
+            flash('User has been updated')
+            return redirect(url_for('user_profile.index')) 
     
     return render_template('user_profile/edit.html', user = g.user)                        
