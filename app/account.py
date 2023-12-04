@@ -52,9 +52,9 @@ def add(id):
             abort(403, 'You have no access to this account.')
 
         text = request.form['posting_text']
-        amount = request.form['amount'] * 100.0
         category_id = request.form['category']
-        
+        amount = float(request.form['amount']) * 100.0
+
         db.execute('INSERT INTO position (text, account_id, amount_rappen, category_id) VALUES (?, ?, ?, ?)',
                         (text, id, amount, category_id))
         
