@@ -20,7 +20,10 @@
             <th scope="row">{{ account['title'] }}</th>
             <td>{{ account['total_last_month']|format_currency }}</td>
             <td>{{ account['total_current_month']|format_currency }}</td>
-            <td><a class="btn btn-primary" href="{{ url_for('account.single', id = account['id']) }}">Details</a></td>
+            <td>
+                <a class="btn btn-primary" href="{{ url_for('account.add', id = account['id']) }}">Add expense</a>
+                <a class="btn btn-secondary" href="{{ url_for('account.single', id = account['id']) }}">Details</a>
+            </td>
         </tr>
         {% endfor %}
     </tbody>
