@@ -14,24 +14,31 @@
         <div class="form-group">
             <label for="address">Adresse:</label>
             <p class="form-control-static">
-                <span>{{ user['street'] }}</span><br>
+                <span>{{ user['street'] + ' ' + user['street_nr'] }}</span><br>
                 <span>{{ user['zip'] + ' ' + user['city']}}</span>
             </p>
         </div>
         <form action="{{ url_for('user_profile.edit')}}" method="POST">
-            <!-- Other form fields -->
-
-            <div class="mb-3">
-                <label for="street" class="form-label">Neue Strasse:</label>
-                <input type="text" class="form-control" id="street" name="street"
-                    placeholder="Bitte gib hier deine neue Adresse ein">
+            <label for="street1" class="form-label">Neue Adresse:</label>
+            <div class="d-flex mb-3">
+                <input type="text" class="form-control me-2" id="street" name="street" placeholder="Strasse"
+                    style="width: 200px;">
+                <input type="text" class="form-control" id="street_nr" name="street_nr" placeholder="Hausnr."
+                    style="width: 100px;">
             </div>
-
-            <!-- Other form fields -->
-
-            <button type="submit" class="btn btn-primary">Save Changes</button>
-        </form>
+            <div class="d-flex mb-3"> <!-- Hier wird ein Zeilenabstand von 3 Einheiten hinzugefügt -->
+                <input type="text" class="form-control me-2" id="zip" name="zip" placeholder="PLZ"
+                    style="width: 100px;">
+                <input type="text" class="form-control" id="city" name="city" placeholder="Wohnort"
+                    style="width: 200px;">
+            </div>
     </div>
+
+    <!-- Other form fields -->
+
+    <button type="submit" class="btn btn-primary">Adresse ändern</button>
+    </form>
+</div>
 </div>
 
 {% endblock %}

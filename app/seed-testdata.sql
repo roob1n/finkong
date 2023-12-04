@@ -7,9 +7,9 @@ DELETE FROM account;
 DELETE FROM user;
 
 -- Insert new data
-INSERT INTO user (username, password)
-VALUES ('admin', 'scrypt:32768:8:1$ONXNt5bCp1BvMRTw$b5acb16088edbc80b8a81ad6812ef1789022304cf6a6af5b5a0d915f1696aff63d466277848807bd85e62198f927cadce9f02ddf0d20eadda029183231128323'),
-       ('john-doe', 'password');
+INSERT INTO user (username, password, street, street_nr, zip, city)
+VALUES ('admin', 'scrypt:32768:8:1$ONXNt5bCp1BvMRTw$b5acb16088edbc80b8a81ad6812ef1789022304cf6a6af5b5a0d915f1696aff63d466277848807bd85e62198f927cadce9f02ddf0d20eadda029183231128323', 'Jupiterstrasse', '99', '4001', 'Basel'),
+       ('john-doe', 'password', 'Saturnstrasse', '56', '8009', 'Zürich');
 
 INSERT INTO account (title, user_id) 
 VALUES ('Privatkonto', 1), 

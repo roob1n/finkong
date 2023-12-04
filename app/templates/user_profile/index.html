@@ -14,7 +14,7 @@
         <div class="form-group">
             <label for="address">Adresse:</label>
             <p class="form-control-static">
-                <span>{{ user['street'] }}</span><br>
+                <span>{{ user['street']+ ' ' + user['street_nr'] }}</span><br>
                 <span>{{ user['zip'] + ' ' + user['city']}}</span>
             </p>
         </div>
