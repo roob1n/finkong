@@ -11,6 +11,16 @@
             <label for="userName">User Name:</label>
             <p class="form-control-static">{{ user['username'] }}</p>
         </div>
+        <div class="form-group">
+            <label for="address">Adresse:</label>
+            <p class="form-control-static">
+                <span>{{ user['street']+ ' ' + user['street_nr'] }}</span><br>
+                <span>{{ user['zip'] + ' ' + user['city']}}</span>
+            </p>
+        </div>
     </div>
 </div>
+
+<a class="btn btn-outline-secondary my-2" href=" {{ url_for('user_profile.edit') }}">Profil bearbeiten</a>
+
 {% endblock %}
