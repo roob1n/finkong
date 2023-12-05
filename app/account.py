@@ -72,3 +72,7 @@ def account_belongs_to_user(id):
     account = db.execute('SELECT * FROM account WHERE id = ?', (id,)).fetchone()
 
     return account['user_id'] == g.user['id']
+
+@bp.route('/create_account', methods=('GET', 'POST'))
+def create_account():
+    return render_template('account/create_account.html', user = g.user)
