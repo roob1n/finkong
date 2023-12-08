@@ -75,4 +75,11 @@ def account_belongs_to_user(id):
 
 @bp.route('/create_account', methods=('GET', 'POST'))
 def create_account():
+    if request.method == 'POST':
+        title = request.form ['newaccount']
+        db = get_db()
+         
+        db.execute('INSERT INTO account (title, user_id) VALUES (?,?)', (title, g.user['id']))
+        db.commit()
+        flash('Account hinzugefügt')
     return render_template('account/create_account.html', user = g.user)
