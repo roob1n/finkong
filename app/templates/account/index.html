@@ -23,9 +23,14 @@
             <td>
                 <a class="btn btn-primary" href="{{ url_for('account.add', id = account['id']) }}">Add expense</a>
                 <a class="btn btn-secondary" href="{{ url_for('account.single', id = account['id']) }}">Details</a>
+
+                <form action="{{ url_for('account.delete_account') }}" method="POST" style="display: inline;">
+                    <input type="hidden" name="id" value="{{ account['id'] }}">
+                    <button type="submit" class="btn btn-secondary">Account löschen</button>
+                </form>
             </td>
-        </tr>
-        {% endfor %}
+
+            {% endfor %}
     </tbody>
 </table>
 
