@@ -15,7 +15,7 @@
                 <p class="card-text">{{ category['description'] }}</p>
             </div>
             <div class="card-footer">
-                <a class="btn btn-light btn-sm" href="{{ url_for('category.index') }}">Details</a>
+                <a class="btn btn-light btn-sm" href="{{ url_for('category.single', id = category['id']) }}">Details</a>
                 <a class="btn btn-light btn-sm" href="{{ url_for('category.index') }}">Edit</a>
             </div>
         </div>
