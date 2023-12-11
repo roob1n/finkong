@@ -29,4 +29,5 @@ def edit():
             flash('User has been updated')
             return redirect(url_for('user_profile.index')) 
     
-    return render_template('user_profile/edit.html', user = g.user)                        
+    return render_template('user_profile/edit.html', user = g.user)         
+               

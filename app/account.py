@@ -72,3 +72,31 @@ def account_belongs_to_user(id):
     account = db.execute('SELECT * FROM account WHERE id = ?', (id,)).fetchone()
 
     return account['user_id'] == g.user['id']
+
+@bp.route('/create_account', methods=('GET', 'POST'))
+def create_account():
+    if request.method == 'POST':
+        title = request.form ['newaccount']
+        db = get_db()
+        db.execute('INSERT INTO account (title, user_id) VALUES (?,?)', (title, g.user['id']))
+        db.commit()
+        flash('Account hinzugefügt')
+    return render_template('account/create_account.html', user = g.user,)
+
+@bp.route('/delete_account', methods=('POST',))
+def delete_account():
+    if request.method == 'POST':
+        try:
+            account_id = request.form.get('id')
+            
+            if account_id:
+                db = get_db()
+                db.execute('DELETE FROM account WHERE id=?', (account_id,))
+                db.commit()
+                flash('Account gelöscht')
+        except Exception as e:
+            # Handle exceptions, e.g., log the error
+            print(f"Error deleting account: {e}")
+            flash('Error deleting account')
+    
+    return redirect(url_for('account.index'))
