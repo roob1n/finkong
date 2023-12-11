@@ -46,3 +46,8 @@ body {
 a {
     color: var(--caribbean-current);
 }
+
+.btn-primary {
+    background-color: var(--caribbean-current);
+    border-color: var(--caribbean-current);
+}

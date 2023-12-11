@@ -1,0 +1,51 @@
+{% extends 'app.html' %}
+
+{% block header %}
+<h1>{% block title %}Edit Profile{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+<div class="card">
+    <div class="card-body">
+        <div class="form-group">
+            <label for="userName">User Name:</label>
+            <p class="form-control-static">{{ user['username'] }}</p>
+        </div>
+        <div class="form-group">
+            <h4 class="h4">Alte Adresse:</h4>
+            <p class="form-control-static">
+                <span>{{ user['street'] + ' ' + user['street_nr'] }}</span><br>
+                <span>{{ user['zip'] + ' ' + user['city']}}</span>
+            </p>
+        </div>
+        <form action="{{ url_for('user_profile.edit')}}" method="POST">
+            <h4 class="h4">Neue Adresse:</h4>
+            <div class="row g-2 me-2">
+                <div class="form-group col-8 col-md-4">
+                    <label for="street">Strasse</label>
+                    <input class="form-control" type="text" placeholder="Strasse" value="{{ user['street'] }}"
+                        name="street">
+                </div>
+                <div class="form-group col-4 col-md-1">
+                    <label for="street_nr">Nr.</label>
+                    <input class="form-control" type="text" placeholder="Nr." value="{{ user['street_nr'] }}"
+                        name="street_nr">
+                </div>
+            </div>
+            <div class="row g-2">
+                <div class="form-group col-4 col-md-1">
+                    <label for="zip">PLZ</label>
+                    <input class="form-control" type="text" placeholder="PLZ" value="{{ user['zip'] }}" name="zip">
+                </div>
+                <div class="form-group col-8 col-md-4">
+                    <label for="city">City</label>
+                    <input class="form-control" type="text" placeholder="Ort" value="{{ user['city'] }}" name="city">
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary my-2">Adresse ändern</button>
+
+        </form>
+    </div>
+</div>
+
+{% endblock %}
